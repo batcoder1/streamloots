@@ -1,0 +1,9 @@
+{
+  "environment": "production",
+  "logger": {
+    "logs": {
+      "type": "console",
+      "level": "info"
+    } 
+  }
+}

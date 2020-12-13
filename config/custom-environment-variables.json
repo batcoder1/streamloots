@@ -1,0 +1,22 @@
+{
+  "environment": "NODE_ENV",
+
+  "logger": {
+    "logs": {
+      "type": "LOGGER_TYPE",
+      "level": "LOGGER_LEVEL"
+    } 
+  },
+  "owner": "OWNER",
+  "user": "USER",
+  "tokenSecret": "TOKEN_SECRET",
+  "MONGO": {
+    "CONNECTION": "MONGO_CONNECTION",
+    "HOST": "MONGO_HOST",
+    "PORT": "MONGO_PORT",
+    "USERNAME": "MONGO_USERNAME",
+    "PASSWORD": "MONGO_PASSWORD",
+    "DB": "MONGO_DB",
+    "PARAMS": "MONGO_PARAMS"
+  }
+}

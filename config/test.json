@@ -1,0 +1,21 @@
+{
+  "logger": {
+    "logs": {
+      "type": "console",
+      "level": "info"
+    } 
+ },
+ "owner": "5a50159308f5a800111de759",
+ "user": "5a50159308f5a800111de750",
+ "tokenSecret": "your-256-bit-secret",
+ "MONGO": {
+  "CONNECTION": "mongodb",
+  "HOST": "localhost:27017",
+  "PORT": "27017",
+  "USERNAME": "streamUser",
+  "PASSWORD": "Stream./3?",
+  "DB": "streamloops",
+  "PARAMS": ""
+
+ }
+}
