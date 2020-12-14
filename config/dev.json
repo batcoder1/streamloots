@@ -10,13 +10,17 @@
   "tokenSecret": "your-256-bit-secret",
 
   "MONGO": {
-    "CONNECTION": "mongodb",
-    "HOST": "localhost:27017",
+    "CONNECTION": "mongodb+srv",
+    "HOST": "cluster0.hrec8.mongodb.net",
     "PORT": "27017",
     "USERNAME": "streamUser",
-    "PASSWORD": "Stream./3?",
-    "DB": "streamloops",
-    "PARAMS": ""
-
+    "PASSWORD": "xxxx",
+    "DB": "streamloots",
+    "PARAMS": "retryWrites=true&w=majority"
+  
+   },
+   "crypto": {
+    "algorithm": "aes-256-cbc",
+    "password": "j7EeCaS8trpFLSUh"
   }
 }
