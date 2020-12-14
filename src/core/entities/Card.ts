@@ -1,4 +1,3 @@
-import { ObjectID } from 'mongodb';
 import { cardTypeEnum, raretyCardEnum } from '../../../config/constant';
 export default interface Card {
   id?: string;
