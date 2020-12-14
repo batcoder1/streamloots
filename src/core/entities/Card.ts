@@ -1,10 +1,11 @@
-import { cardTypeEnum } from '../../../config/constant';
+import { ObjectID } from 'mongodb';
+import { cardTypeEnum, raretyCardEnum } from '../../../config/constant';
 export default interface Card {
-  id: string;
+  id?: string;
   name: string;
   type: cardTypeEnum;
   image: string;
-  rarity: string;
-
-  private: boolean;
+  published: boolean;
+  rarity: raretyCardEnum;
+  userId: string;
 }
