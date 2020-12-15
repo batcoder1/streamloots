@@ -25,6 +25,8 @@ export const CARD = 'Card';
 
 export const interfaceTypes = new Set([CARD]);
 
+export const NOT_CARD_OWNER = 'The user is not owner of the card';
+export const NOT_AUTHORIZED = 'Not authorized to perform this operation';
 export const BAD_REQUEST = 'Bad Request';
 export const NOT_FOUND = 'Not Found';
 export const USER_NOT_FOUND = 'User not found';

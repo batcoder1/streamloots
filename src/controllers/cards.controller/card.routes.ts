@@ -1,6 +1,5 @@
 import * as express from 'express';
 import { Path } from '../../../config/constant';
-import { isAuthenticated } from '../../share/authenticator/authenticator';
 
 import { logger } from '../../share/util/logger';
 import CardsController from './cards.controller';
@@ -17,12 +16,8 @@ export class CardRouter {
     this.router.put('', CardsController.create);
     this.router.patch('', CardsController.update);
     this.router.get(Path.user, CardsController.getUserCards);
-    this.router.post(Path.publish, isAuthenticated, CardsController.publish);
-    this.router.post(
-      Path.unpublish,
-      isAuthenticated,
-      CardsController.unpublish,
-    );
+    this.router.post(Path.publish, CardsController.publish);
+    this.router.post(Path.unpublish, CardsController.unpublish);
 
     this.router.delete('', CardsController.badRequest);
     this.router.options('', CardsController.badRequest);
