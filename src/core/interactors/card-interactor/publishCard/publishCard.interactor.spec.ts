@@ -38,16 +38,16 @@ describe('Test published', () => {
   it('published should change published property to true', async () => {
     const publishedExpected = true;
 
-    const res = await publishCard(cardsId, cardTest1.userId);
-    console.log(res);
+    await publishCard(cardsId, cardTest1.userId);
+
     const card = await getCardById(cardsId[0]);
     expect(card.published).equals(publishedExpected);
   });
   it('published should not allow to publish a card of another user', async () => {
     const publishedExpected = false;
 
-    const res = await publishCard(cardsId2, cardTest1.userId);
-    console.log(res);
+    await publishCard(cardsId2, cardTest1.userId);
+
     const card = await getCardById(cardsId2[0]);
     expect(card.published).equals(publishedExpected);
   });

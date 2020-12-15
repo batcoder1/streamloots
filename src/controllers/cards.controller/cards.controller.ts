@@ -7,7 +7,6 @@ import {
   HTTP_CODE_UNAUTHORIZED,
   NOT_FOUND,
   NOT_AUTHORIZED,
-  user,
 } from '../../../config/constant';
 import Card from '../../core/entities/Card';
 import getCardById from '../../core/interactors/card-interactor/getCardById';
@@ -140,6 +139,7 @@ class CardsController {
    * @memberof CardsController
    */
   public static getUserCards = async (req: Request, res: Response) => {
+    logger.info('getUserCards...');
     const { userId } = req.query;
     console.log('userId:', userId);
     const userIdToken = decodeToken(req);

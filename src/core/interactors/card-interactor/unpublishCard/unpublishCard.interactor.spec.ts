@@ -47,7 +47,6 @@ describe('Test unpublished', () => {
     const publishedExpected = false;
 
     const res = await publishCard(cardsId2, cardTest1.userId);
-    console.log(res);
     const card = await getCardById(cardsId2[0]);
     expect(card.published).equals(publishedExpected);
   });

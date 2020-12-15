@@ -14,8 +14,6 @@ const publishCard = (
 
   for (const cardId of cardIds) {
     card = await cardRepository.getCardById(cardId);
-    console.log(card);
-    console.log(userId);
     if (card.userId == userId) {
       await cardRepository.publish(card);
       dataDogRepository.send(card, PUBLISHED_STAT);
