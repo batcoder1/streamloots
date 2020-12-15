@@ -1,8 +1,8 @@
 import { createCardDatasource } from '../../../../dataSources/card.datasource';
-import { CreateDatadogNotifier } from '../../../../dataSources/datadog.datasource';
-import { CreateEmailNotifier } from '../../../../dataSources/emailNotifier.datasource';
-import { CreateGoogleNotifier } from '../../../../dataSources/google.datasource';
+import { CreateDatadogNotifier } from '../../../../notifiers/datadog.notifier';
 import publishCard from './publishCard.interactor';
+import { CreateEmailNotifier } from '../../../../notifiers/email.notifier';
+import { CreateGoogleNotifier } from '../../../../notifiers/google.notifier';
 
 const cardRepository = createCardDatasource();
 const notifierRepository = CreateEmailNotifier();

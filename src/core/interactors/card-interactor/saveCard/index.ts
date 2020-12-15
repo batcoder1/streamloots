@@ -1,6 +1,6 @@
 import { createCardDatasource } from '../../../../dataSources/card.datasource';
-import { CreateDatadogNotifier } from '../../../../dataSources/datadog.datasource';
-import { CreateGoogleNotifier } from '../../../../dataSources/google.datasource';
+import { CreateDatadogNotifier } from '../../../../notifiers/datadog.notifier';
+import { CreateGoogleNotifier } from '../../../../notifiers/google.notifier';
 import saveCard from './saveCard.interactor';
 
 const cardRepository = createCardDatasource();

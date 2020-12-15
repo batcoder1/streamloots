@@ -14,11 +14,13 @@ Application
 
 - DataSources: Outputs of our system implementing repositories and connected to storage systems.
 - Controllers: Inputs of our system encapsulating the transport layer. They should trigger the Interactors.
-- EmailNotifier: Output of our systmen implementing NotifierRepository
+- EmailNotifier: Output of our system implementing NotifierRepository
+- DatadogNotifier: Output of our system implementing AnalitycRepository
+- GoogleNotifier: Output of our system implementing AnalitycRepository
 
-Infrastructure:
+  Infrastructure:
 
-- MongoDB: The system use respositories to connect with
+- MongoDB: The system use respositories to connect with the database
 - Email Server(gmail): The system use notifier to send the email
 - Notification Server(firebase): The system use notifier to send the notification
 

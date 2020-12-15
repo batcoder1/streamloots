@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import publishCard from '.';
-import { cardTypeEnum, raretyCardEnum } from '../../../../../config/constant';
+import { raretyCardEnum } from '../../../../../config/constant';
 import CardModel from '../../../../dataSources/schema/card.schema';
 import getCardById from '../getCardById';
 
 const cardTest1 = {
   name: 'test1',
-  type: cardTypeEnum.regular,
+  limited: 0,
   image: 'test1.jpg',
   rarity: raretyCardEnum.common,
   published: false,
@@ -15,7 +15,7 @@ const cardTest1 = {
 
 const cardTest2 = {
   name: 'test1',
-  type: cardTypeEnum.regular,
+  limited: 0,
   image: 'test1.jpg',
   rarity: raretyCardEnum.common,
   published: false,

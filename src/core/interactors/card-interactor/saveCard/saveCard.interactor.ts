@@ -1,6 +1,6 @@
 import { CREATED_STAT } from '../../../../../config/constant';
-import { DatadogNotifier } from '../../../../dataSources/datadog.datasource';
-import { GoogleNotifier } from '../../../../dataSources/google.datasource';
+import { DatadogNotifier } from '../../../../notifiers/datadog.notifier';
+import { GoogleNotifier } from '../../../../notifiers/google.notifier';
 import Card from '../../../entities/Card';
 import CardRepository from '../../../repositories/card.repository';
 
