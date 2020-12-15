@@ -7,9 +7,9 @@
       "level": "LOGGER_LEVEL"
     } 
   },
-  "owner": "OWNER",
-  "user": "USER",
-  "tokenSecret": "TOKEN_SECRET",
+  "ownerToken": "OWNER_TOKEN",
+  "userToken": "USER_TOKEN",
+  
   "MONGO": {
     "CONNECTION": "MONGO_CONNECTION",
     "HOST": "MONGO_HOST",

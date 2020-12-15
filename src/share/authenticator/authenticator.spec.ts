@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { request } from 'express';
-import { BASE_URL, owner, raretyCardEnum } from '../../../config/constant';
+import config from 'config';
+import { BASE_URL, raretyCardEnum } from '../../../config/constant';
 import CardModel from '../../dataSources/schema/card.schema';
 import * as server from '../../server';
 import { decodeToken } from './authenticator';
@@ -14,8 +15,8 @@ const cardTest = {
   userId: '7bc74c5937b6b08419c24141',
 };
 const baseUrl = BASE_URL;
+const owner = config.get('ownerToken');
 let cardCreateId;
-
 let cardTestId: string;
 describe('Test auh', () => {
   before(async () => {
