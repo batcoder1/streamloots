@@ -28,6 +28,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.2.0",
+    "hot-shots": "^8.2.1",
     "jwt-simple": "^0.5.6",
     "logger": "0.0.1",
     "mongoose": "^5.11.7",

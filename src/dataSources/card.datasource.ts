@@ -28,6 +28,13 @@ export class CardDatasource implements CardRepository {
     this.connectToDatabase();
   }
 
+  /**
+   * Get card of a user
+   *
+   * @param {string} userId
+   * @returns {Promise<Card[]>}
+   * @memberof CardDatasource
+   */
   public async getCardByUser(userId: string): Promise<Card[]> {
     logger.info('getCardByUser...');
     const cards = await CardModel.find({ userId });
@@ -44,6 +51,36 @@ export class CardDatasource implements CardRepository {
     });
     return cardsfiltered as Card[];
   }
+  /**
+   * Get the published card of a user
+   *
+   * @param {string} userId
+   * @returns {Promise<Card[]>}
+   * @memberof CardDatasource
+   */
+  public async getPublishedCardsOfUser(userId: string): Promise<Card[]> {
+    logger.info('getCardByUser...');
+    const cards = await CardModel.find({ userId, published: true });
+    const cardsfiltered = cards.map((card) => {
+      return {
+        id: card.id,
+        type: card.type,
+        name: card.name,
+        image: card.image,
+        rarity: card.rarity,
+        published: card.published,
+        userId: card.userId,
+      };
+    });
+    return cardsfiltered as Card[];
+  }
+  /**
+   * Get a card
+   *
+   * @param {string} id
+   * @returns {Promise<Card>}
+   * @memberof CardDatasource
+   */
   public async getCardById(id: string): Promise<Card> {
     logger.info('getCardById...');
     const card = await await CardModel.findById(id);
@@ -53,6 +90,12 @@ export class CardDatasource implements CardRepository {
     return card.toJSON();
   }
 
+  /**
+   * Get all cards
+   *
+   * @returns {Promise<Card[]>}
+   * @memberof CardDatasource
+   */
   public async getCards(): Promise<Card[]> {
     logger.info('getCards...');
     const cards = await CardModel.find({});
@@ -70,6 +113,13 @@ export class CardDatasource implements CardRepository {
     return cardsfiltered as Card[];
   }
 
+  /**
+   * Update a card
+   *
+   * @param {Card} card
+   * @returns {Promise<Card>}
+   * @memberof CardDatasource
+   */
   public async updateCard(card: Card): Promise<Card> {
     logger.info('updateCard...');
 
@@ -82,21 +132,48 @@ export class CardDatasource implements CardRepository {
     return !isNil(cardUpdated) ? cardUpdated.toJSON() : cardUpdated;
   }
 
+  /**
+   * Create a card
+   *
+   * @param {Card} card
+   * @returns {Promise<Card>}
+   * @memberof CardDatasource
+   */
   public async saveCard(card: Card): Promise<Card> {
     logger.info('saveCard...');
     let schemaCard = new CardModel(card);
     return await (await schemaCard.save()).toJSON();
   }
 
+  /**
+   * Publish a car
+   *
+   * @param {Card} card
+   * @returns {Promise<Card>}
+   * @memberof CardDatasource
+   */
   public async publish(card: Card): Promise<Card> {
     logger.info('publish...');
     card;
-    return await CardModel.updateOne({ id: card.id }, { published: true });
+    return await CardModel.findOneAndUpdate(
+      { _id: card.id },
+      { published: true },
+    );
   }
 
+  /**
+   * Unpublish a car
+   *
+   * @param {Card} card
+   * @returns {Promise<Card>}
+   * @memberof CardDatasource
+   */
   public async unpublish(card: Card): Promise<Card> {
     logger.info('unpublish...');
-    return await CardModel.updateOne({ id: card.id }, { published: false });
+    return await CardModel.findOneAndUpdate(
+      { _id: card.id },
+      { published: false },
+    );
   }
 
   /**

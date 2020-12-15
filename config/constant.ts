@@ -1,5 +1,9 @@
 export const BASE_URL = 'http://localhost:9091';
 
+// stats
+export const PUBLISHED_STAT = 'published';
+export const CREATED_STAT = 'created';
+
 export enum Path {
   card = '/card',
   publish = '/publish',

@@ -1,11 +1,11 @@
-import NotifierRepository from '../core/repositories/notifier.repository';
 import nodemailer from 'nodemailer';
 import Card from '../core/entities/Card';
+import NotifierRepository from '../core/repositories/notifier.repository';
 
 export class EmailNotifier implements NotifierRepository {
   public notify(card: Card, email: string): void {
     const mailer = this.getMailer();
-    const publish = card.private ? 'is not publish, already' : 'is publish';
+    const publish = card.published ? 'is published' : 'is not published';
     const mailOptions = {
       from: '"StreamLoots"',
       to: email,
