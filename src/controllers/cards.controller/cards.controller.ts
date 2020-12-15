@@ -29,10 +29,10 @@ class CardsController {
       if (!userId) {
         createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
       }
-      const { image, type, name, rarity, published } = req.body;
+      const { image, limited, name, rarity, published } = req.body;
       const card: Card = {
         image,
-        type,
+        limited,
         name,
         userId,
         rarity,

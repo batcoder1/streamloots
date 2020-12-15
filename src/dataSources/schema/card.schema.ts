@@ -1,5 +1,5 @@
-import { Schema, model, Document } from 'mongoose';
-import { cardTypeEnum, raretyCardEnum } from '../../../config/constant';
+import { Document, model, Schema } from 'mongoose';
+import { raretyCardEnum } from '../../../config/constant';
 import Card from '../../core/entities/Card';
 export interface ICardDoc extends Document, Card {
   id: string;
@@ -9,10 +9,6 @@ const CardSchema: Schema = new Schema(
   {
     name: {
       type: String,
-    },
-    type: {
-      type: String,
-      enum: cardTypeEnum,
     },
     image: {
       type: String,
@@ -24,6 +20,11 @@ const CardSchema: Schema = new Schema(
     published: {
       type: Boolean,
       default: false,
+    },
+    //limited value = 0 => is a regular card
+    limited: {
+      type: Number,
+      default: 0,
     },
     userId: {
       type: String,

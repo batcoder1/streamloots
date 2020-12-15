@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import getCardById from '.';
-import { cardTypeEnum, raretyCardEnum } from '../../../../..//config/constant';
+import { raretyCardEnum } from '../../../../..//config/constant';
 import CardModel from '../../../../dataSources/schema/card.schema';
 
 const cardTest = {
   name: 'test1',
-  type: cardTypeEnum.regular,
+  limited: 0,
   image: 'test1.jpg',
   rarity: raretyCardEnum.common,
   published: false,
@@ -25,7 +25,7 @@ describe('Test getCardById', () => {
     const card = await getCardById(cardTestId);
 
     expect(card.name).equals(cardTest.name);
-    expect(card.type).equals(cardTest.type);
+    expect(card.limited).equals(cardTest.limited);
     expect(card.image).equals(cardTest.image);
   });
 });

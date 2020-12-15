@@ -1,18 +1,12 @@
-import CardRepository from '../core/repositories/card.repository';
-
-import Card from '../core/entities/Card';
 import config from 'config';
+import { isNil } from 'lodash';
+import mongoose from 'mongoose';
+import { HTTP_CODE_NOT_FOUND, NOT_FOUND } from '../../config/constant';
+import Card from '../core/entities/Card';
+import CardRepository from '../core/repositories/card.repository';
+import { createErrorHandler } from '../share/error-handler/error.handler';
 import { logger } from '../share/util/logger';
 import CardModel from './schema/card.schema';
-import mongoose from 'mongoose';
-import cardSchema from './schema/card.schema';
-import {
-  cardTypeEnum,
-  HTTP_CODE_NOT_FOUND,
-  NOT_FOUND,
-} from '../../config/constant';
-import { createErrorHandler } from '../share/error-handler/error.handler';
-import { isNil } from 'lodash';
 
 let MONGO_CONNECTION: any;
 let MONGO_USERNAME: any;
@@ -41,11 +35,11 @@ export class CardDatasource implements CardRepository {
     const cardsfiltered = cards.map((card) => {
       return {
         id: card.id,
-        type: card.type,
         name: card.name,
         image: card.image,
         rarity: card.rarity,
         published: card.published,
+        limited: card.limited,
         userId: card.userId,
       };
     });
@@ -64,11 +58,11 @@ export class CardDatasource implements CardRepository {
     const cardsfiltered = cards.map((card) => {
       return {
         id: card.id,
-        type: card.type,
         name: card.name,
         image: card.image,
         rarity: card.rarity,
         published: card.published,
+        limited: card.limited,
         userId: card.userId,
       };
     });
@@ -102,11 +96,11 @@ export class CardDatasource implements CardRepository {
     const cardsfiltered = cards.map((card) => {
       return {
         id: card.id,
-        type: card.type,
         name: card.name,
         image: card.image,
         rarity: card.rarity,
         published: card.published,
+        limited: card.limited,
         userId: card.userId,
       };
     });

@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import config from 'config';
 import {
   BASE_URL,
-  cardTypeEnum,
   Collections,
   HTTP_CODE_BAD_REQUEST,
   HTTP_CODE_NOT_FOUND,
@@ -19,7 +18,7 @@ import CardModel from '../../dataSources/schema/card.schema';
 
 const cardTest = {
   name: 'test1',
-  type: cardTypeEnum.regular,
+  limited: 0,
   image: 'test1.jpg',
   rarity: raretyCardEnum.common,
   published: false,
@@ -28,7 +27,7 @@ const cardTest = {
 };
 const cardTest2 = {
   name: 'test2',
-  type: cardTypeEnum.regular,
+  limited: 0,
   image: 'test2.jpg',
   rarity: raretyCardEnum.common,
   published: false,
@@ -57,7 +56,7 @@ describe.only('Test cards controller', () => {
   it('PUT cards should respond 200 ', async () => {
     const postDataApi = {
       name: 'Asgully',
-      type: cardTypeEnum.regular,
+      limited: 0,
       image: 'asgully.jpg',
       rarity: raretyCardEnum.common,
       published: false,
@@ -74,7 +73,7 @@ describe.only('Test cards controller', () => {
   it('PUT cards should respond 401 ', async () => {
     const postDataApi = {
       name: 'Asgully',
-      type: cardTypeEnum.regular,
+      limited: 0,
       image: 'asgully.jpg',
       rarity: raretyCardEnum.common,
       published: false,
@@ -95,7 +94,7 @@ describe.only('Test cards controller', () => {
     const resp = await apiCall(postDataApi, endpoint, method);
     expect(resp.status).equals(HTTP_CODE_OK);
     expect(resp.data[0].name).eq(cardTest.name);
-    expect(resp.data[0].type).eq(cardTest.type);
+    expect(resp.data[0].limited).eq(cardTest.limited);
     expect(resp.data[0].image).eq(cardTest.image);
     expect(resp.data[0].published).eq(cardTest.published);
     expect(resp.data[0].userId).eq(cardTest.userId);
@@ -109,7 +108,7 @@ describe.only('Test cards controller', () => {
     const resp = await apiCall(postDataApi, endpoint, method, owner);
     expect(resp.status).equals(HTTP_CODE_OK);
     expect(resp.data.name).eq(cardTest.name);
-    expect(resp.data.type).eq(cardTest.type);
+    expect(resp.data.limited).eq(cardTest.limited);
     expect(resp.data.image).eq(cardTest.image);
     expect(resp.data.published).eq(cardTest.published);
     expect(resp.data.userId).eq(cardTest.userId);
@@ -154,7 +153,7 @@ describe.only('Test cards controller', () => {
     expect(resp.status).equals(HTTP_CODE_OK);
     expect(resp.data.name).equals(postDataApi.name);
     expect(resp.data.id).equals(cardTestId);
-    expect(resp.data.type).equals(cardTest.type);
+    expect(resp.data.limited).equals(cardTest.limited);
     expect(resp.data.image).equals(cardTest.image);
   });
   it('PATCH card should respond 401, user not owner of card ', async () => {

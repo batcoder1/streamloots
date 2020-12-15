@@ -16,10 +16,6 @@ export enum raretyCardEnum {
   legendary = 'legendary',
 }
 
-export enum cardTypeEnum {
-  regular = 'regular',
-  limited = 'limited',
-}
 export enum Collections {
   cards = 'cards',
 }

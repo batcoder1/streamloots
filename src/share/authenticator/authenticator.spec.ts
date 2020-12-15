@@ -1,18 +1,13 @@
 import { expect } from 'chai';
 import { request } from 'express';
-import {
-  BASE_URL,
-  cardTypeEnum,
-  owner,
-  raretyCardEnum,
-} from '../../../config/constant';
+import { BASE_URL, owner, raretyCardEnum } from '../../../config/constant';
 import CardModel from '../../dataSources/schema/card.schema';
 import * as server from '../../server';
 import { decodeToken } from './authenticator';
 
 const cardTest = {
   name: 'test1',
-  type: cardTypeEnum.regular,
+  limited: 0,
   image: 'test1.jpg',
   rarity: raretyCardEnum.common,
   published: false,

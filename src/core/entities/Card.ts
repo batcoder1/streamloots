@@ -1,10 +1,10 @@
-import { cardTypeEnum, raretyCardEnum } from '../../../config/constant';
+import { raretyCardEnum } from '../../../config/constant';
 export default interface Card {
   id?: string;
   name: string;
-  type: cardTypeEnum;
   image: string;
   published: boolean;
   rarity: raretyCardEnum;
+  limited: number;
   userId: string;
 }
