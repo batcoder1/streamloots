@@ -21,7 +21,7 @@ export class Routes {
    * Set all app routes
    */
   private setAllRoutes() {
-    this.app.use(Path.card, CreateCardRouter().Cards());
+    this.app.use(Path.cards, CreateCardRouter().Cards());
     this.app.route('/*').get(this.index);
   }
 

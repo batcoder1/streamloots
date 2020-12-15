@@ -12,10 +12,10 @@ export class CardRouter {
   }
 
   Cards() {
-    this.router.get('', CardsController.getCard);
-    this.router.put('', CardsController.create);
-    this.router.patch('', CardsController.update);
-    this.router.get(Path.user, CardsController.getUserCards);
+    this.router.get(Path.card, CardsController.getCard);
+    this.router.put(Path.card, CardsController.create);
+    this.router.patch(Path.card, CardsController.update);
+    this.router.get('', CardsController.getUserCards);
     this.router.post(Path.publish, CardsController.publish);
     this.router.post(Path.unpublish, CardsController.unpublish);
 

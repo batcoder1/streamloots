@@ -5,6 +5,7 @@ export const PUBLISHED_STAT = 'published';
 export const CREATED_STAT = 'created';
 
 export enum Path {
+  cards = '/cards',
   card = '/card',
   publish = '/publish',
   unpublish = '/unpublish',
@@ -41,8 +42,3 @@ export const HTTP_CODE_NOT_FOUND = 404;
 export const HTTP_CODE_OK = 200;
 export const HTTP_CODE_BAD_REQUEST = 400;
 export const HTTP_CODE_UNAUTHORIZED = 401;
-
-export const owner =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdHJlYW1sb290cy5jb20iLCJ1c2VySWQiOiI1YTUwMTU5MzA4ZjVhODAwMTExZGU3NTkiLCJpYXQiOjE1MTYyMzkwMjJ9.mj8-t--lfImQGg8HoA_9XOvDlunl3YJoPttkIbOHNMU';
-export const user =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdHJlYW1sb290cy5jb20iLCJ1c2VySWQiOiI1YTUwMTU5MzA4ZjVhODAwMTExZGU3NTAiLCJpYXQiOjE1MTYyMzkwMjJ9.ArXF6iD5tX0DkKiS0EG3y30Bl3g_E8iLPkk98hJw0Pc';
