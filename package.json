@@ -17,6 +17,8 @@
     "test": "NODE_ENV=test ts-mocha -p tsconfig.json --opts ./mocha.opts --timeout 10000 --exit",
     "load:cards": "NODE_ENV=test ts-node ./stress/load-cards.ts",
     "start:stress": "NODE_ENV=test ts-node ./stress/stress.ts",
+    "pm2": "npm run build-ts && NODE_ENV=test pm2 -i 0 start  dist/src/main.js --watch",
+    "postinstall": "$(yarn bin)/pm2 install typescript",
     "stress": "npm run start:stress"
   },
   "author": "Enrique Rubio",
@@ -37,6 +39,7 @@
     "logger": "0.0.1",
     "mongoose": "^5.11.7",
     "nodemailer": "^6.4.6",
+    "pm2": "^4.5.1",
     "tslib": "^2.0.3",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.1.0"
@@ -45,6 +48,7 @@
     "@types/body-parser": "^1.17.1",
     "@types/chai": "^4.2.1",
     "@types/chai-as-promised": "^7.1.2",
+    "@types/command-exists": "^1.2.0",
     "@types/lodash": "^4.14.71",
     "@types/mocha": "^5.2.7",
     "@types/mongodb": "^3.5.8",
