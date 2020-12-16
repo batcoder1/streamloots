@@ -13,7 +13,11 @@
     "prestart": "npm run build-ts",
     "start": "NODE_ENV=dev  node dist/src/main.js",
     "start:dev": "NODE_ENV=dev nodemon",
-    "test": "NODE_ENV=test ts-mocha -p tsconfig.json --opts ./mocha.opts --timeout 10000 --exit"
+    "start:test": "NODE_ENV=test nodemon",
+    "test": "NODE_ENV=test ts-mocha -p tsconfig.json --opts ./mocha.opts --timeout 10000 --exit",
+    "load:cards": "NODE_ENV=test ts-node ./stress/load-cards.ts",
+    "start:stress": "NODE_ENV=test ts-node ./stress/stress.ts",
+    "stress": "npm run start:stress"
   },
   "author": "Enrique Rubio",
   "license": "ISC",
@@ -49,6 +53,7 @@
     "@types/sinon": "^7.0.13",
     "axios": "^0.21.0",
     "chai": "^4.2.0",
+    "command-exists": "^1.2.9",
     "lodash": "^4.17.20",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.2",

@@ -191,6 +191,7 @@ export class CardDatasource implements CardRepository {
   private async connectToDatabase() {
     const node_env = process.env.NODE_ENV;
     const MONGO_URI = `${MONGO_CONNECTION}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DB}-${nodeEnv}`;
+    console.log(MONGO_URI);
     const options = {
       useNewUrlParser: true,
       useFindAndModify: false,
