@@ -116,7 +116,9 @@ class CardsController {
   public static getCard = async (req: Request, res: Response) => {
     try {
       const { id } = req.query;
-      console.log(' getCard id:', id);
+      logger.info('getCard...');
+      logger.info(`worker process: ', ${process.pid}`);
+
       let card: Card;
       if (!isNil(id) && id) {
         card = await getCardById(id.toString());

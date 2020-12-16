@@ -10,7 +10,10 @@ export async function start() {
     app.set('port', port);
     server = http.createServer(app);
     server.listen(port);
-    logger.debug(`API Server Listening on ${port}`);
+    logger.info(
+      `Worker ${process.pid} started: API Server Listening on ${port}`,
+    );
+    process.send('ready');
   } catch (error) {
     onError(error);
   }
