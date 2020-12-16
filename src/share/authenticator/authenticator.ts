@@ -15,7 +15,7 @@ export function decodeToken(req: Request) {
   if (!data) {
     createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
   }
-  let buff = Buffer.from(data, 'base64');
-  let payload = JSON.parse(buff.toString('ascii'));
+  const buff = Buffer.from(data, 'base64');
+  const payload = JSON.parse(buff.toString('ascii'));
   return payload.userId;
 }

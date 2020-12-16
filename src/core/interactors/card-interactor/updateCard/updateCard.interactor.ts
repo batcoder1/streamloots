@@ -12,7 +12,7 @@ const updateCard = (cardRepository: CardRepository) => async (
   userId: string,
 ): Promise<Card> => {
   const cardDB = await cardRepository.getCardById(card.id);
-  if (cardDB.userId != userId) {
+  if (cardDB.userId !== userId) {
     createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_CARD_OWNER).throwIt();
   }
   const cardUpdated: Card = await cardRepository.updateCard(card);

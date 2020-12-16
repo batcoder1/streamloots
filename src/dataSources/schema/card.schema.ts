@@ -21,7 +21,7 @@ const CardSchema: Schema = new Schema(
       type: Boolean,
       default: false,
     },
-    //limited value = 0 => is a regular card
+    // limited value = 0 => is a regular card
     limited: {
       type: Number,
       default: 0,

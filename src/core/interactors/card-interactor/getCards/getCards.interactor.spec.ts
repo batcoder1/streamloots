@@ -24,9 +24,9 @@ const cardTest2 = {
 describe('Test getCards', () => {
   before(async () => {
     await CardModel.deleteMany({});
-    let schemaCard = new CardModel(cardTest);
+    const schemaCard = new CardModel(cardTest);
     await schemaCard.save();
-    let schemaCard2 = new CardModel(cardTest2);
+    const schemaCard2 = new CardModel(cardTest2);
     await schemaCard2.save();
   });
 

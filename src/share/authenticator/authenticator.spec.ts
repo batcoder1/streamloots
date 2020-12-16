@@ -16,13 +16,12 @@ const cardTest = {
 };
 const baseUrl = BASE_URL;
 const owner = config.get('ownerToken');
-let cardCreateId;
 let cardTestId: string;
 describe('Test auh', () => {
   before(async () => {
     await server.start();
     await CardModel.deleteMany({});
-    let schemaCard = new CardModel(cardTest);
+    const schemaCard = new CardModel(cardTest);
     const card = await schemaCard.save();
     cardTestId = card.id;
   });

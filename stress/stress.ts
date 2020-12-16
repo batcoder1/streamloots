@@ -2,9 +2,10 @@ import config from 'config';
 import { exit } from 'process';
 import util from 'util';
 import fs from 'fs';
+import childProcess from 'child_process';
+import commandExists from 'command-exists';
+const exec = util.promisify(childProcess.exec);
 
-const exec = util.promisify(require('child_process').exec);
-var commandExists = require('command-exists');
 const BASE_URL = 'http://localhost:9091';
 const ownerToken = config.get('ownerToken');
 const cardIds: string[] = [
@@ -35,10 +36,9 @@ async function getStress() {
   const id = Math.floor(Math.random() * 19) + 1;
 
   const { stdout, stderr } = await exec(
-    `ab -n 100 -c 100 -H "authorization: token ${ownerToken}" ${BASE_URL}/cards/card?id=${cardIds[id]} `,
+    `ab -n 10000 -c 1000 -H "authorization: token ${ownerToken}" ${BASE_URL}/cards/card?id=${cardIds[id]} `,
   );
   writeReport(stdout + stderr);
-  console.log(stderr);
   console.log(stdout);
 }
 
@@ -55,20 +55,19 @@ async function commandExistInSO(command: string) {
   }
 }
 
-function writeReport(report: NodeJS.WritableStream) {
+function writeReport(report: any) {
   const date: string = getDateFormatted();
-  var log_file = fs.createWriteStream(
+  const logFile = fs.createWriteStream(
     __dirname + `/reports/stress_test_${date}.log`,
     {
       flags: 'w',
     },
   );
-  var log_stdout = process.stdout;
+  const logStdout = process.stdout;
 
-  console.log = function (d: string) {
-    //
-    log_file.write(util.format(d) + '\n');
-    log_stdout.write(util.format(d) + '\n');
+  console.log = (d: string) => {
+    logFile.write(util.format(d) + '\n');
+    logStdout.write(util.format(d) + '\n');
   };
 }
 

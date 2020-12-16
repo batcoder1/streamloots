@@ -27,10 +27,10 @@ const cardsId2: string[] = [];
 describe('Test published', () => {
   before(async () => {
     await CardModel.deleteMany({});
-    let schemaCard1 = new CardModel(cardTest1);
+    const schemaCard1 = new CardModel(cardTest1);
     const card1 = await schemaCard1.save();
     cardsId.push(card1.id);
-    let schemaCard2 = new CardModel(cardTest2);
+    const schemaCard2 = new CardModel(cardTest2);
     const card2 = await schemaCard2.save();
     cardsId2.push(card2.id);
   });

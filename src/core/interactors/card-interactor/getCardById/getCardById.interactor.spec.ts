@@ -16,7 +16,7 @@ let cardTestId: string;
 describe('Test getCardById', () => {
   before(async () => {
     await CardModel.deleteMany({});
-    let schemaCard = new CardModel(cardTest);
+    const schemaCard = new CardModel(cardTest);
     const card = await schemaCard.save();
     cardTestId = card.id;
   });

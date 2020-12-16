@@ -6,7 +6,7 @@ import StatsD from 'hot-shots';
 
 export class DatadogNotifier implements AnalyticRepository {
   public send(card: Card, stat: string): void {
-    var dogstatsd = new StatsD();
+    const dogstatsd = new StatsD();
     dogstatsd.increment(`cards.${stat}`);
   }
 }

@@ -145,7 +145,7 @@ class CardsController {
     const userIdToken = decodeToken(req);
     let cards: Card[];
     if (!isNil(userId) && userId) {
-      if (userId == userIdToken) {
+      if (userId === userIdToken) {
         cards = await getCardsByUser(userId.toString());
       } else {
         cards = await getPublishedCardsOfUser(userId.toString());

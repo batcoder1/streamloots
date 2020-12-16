@@ -20,7 +20,7 @@ const cardTest = {
   image: 'test1.jpg',
   rarity: raretyCardEnum.common,
   published: false,
-  //ownerId
+  // ownerId
   userId: '5a50159308f5a800111de759',
 };
 const cardTest2 = {
@@ -48,13 +48,13 @@ describe('Test cards controller', () => {
   before(async () => {
     await server.start();
     await CardModel.deleteMany({});
-    let schemaCard = new CardModel(cardTest);
+    const schemaCard = new CardModel(cardTest);
     const card = await schemaCard.save();
     cardTestId = card.id;
-    let schemaCard2 = new CardModel(cardTest2);
+    const schemaCard2 = new CardModel(cardTest2);
     const card2 = await schemaCard2.save();
     cardTestId2 = card2.id;
-    let schemaCard3 = new CardModel(cardTest3);
+    const schemaCard3 = new CardModel(cardTest3);
     const card3 = await schemaCard3.save();
   });
   after(async () => {
@@ -218,7 +218,7 @@ async function apiCall(
   user?: string,
 ): Promise<AxiosResponse> {
   try {
-    const config: AxiosRequestConfig = {
+    const configRequest: AxiosRequestConfig = {
       url: endpoint,
       method,
       baseURL: baseUrl,
@@ -228,7 +228,7 @@ async function apiCall(
       },
       data: dataRequest,
     };
-    const response = await axios(config);
+    const response = await axios(configRequest);
 
     return response;
   } catch (error) {

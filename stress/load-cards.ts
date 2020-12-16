@@ -1,9 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 import config from 'config';
-import util from 'util';
 import { Path } from '../config/constant';
 import { CARDS } from './cards';
-const exec = util.promisify(require('child_process').exec);
 
 const BASE_URL = 'http://localhost:9091';
 const ownerToken = config.get('ownerToken');
@@ -31,7 +29,7 @@ async function apiCall(
   method: Method,
 ): Promise<AxiosResponse> {
   try {
-    const config: AxiosRequestConfig = {
+    const configRequest: AxiosRequestConfig = {
       url: endpoint,
       method,
       baseURL: BASE_URL,
@@ -41,7 +39,7 @@ async function apiCall(
       },
       data: dataRequest,
     };
-    const response = await axios(config);
+    const response = await axios(configRequest);
 
     return response;
   } catch (error) {
