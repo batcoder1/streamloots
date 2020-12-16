@@ -17,9 +17,14 @@ let MONGO_PARAMS: any;
 const nodeEnv = process.env.NODE_ENV;
 
 export class CardDatasource implements CardRepository {
-  constructor() {
-    this.setEnv();
-    this.connectToDatabase();
+  private static instance: CardDatasource;
+  public static getInstance(): CardDatasource {
+    if (!CardDatasource.instance) {
+      CardDatasource.instance = new CardDatasource();
+      this.instance.setEnv();
+      this.instance.connectToDatabase();
+    }
+    return CardDatasource.instance;
   }
 
   /**
@@ -122,7 +127,7 @@ export class CardDatasource implements CardRepository {
       { $set: card },
     );
 
-    let cardUpdated = await await CardModel.findById(card.id);
+    const cardUpdated = await await CardModel.findById(card.id);
     return !isNil(cardUpdated) ? cardUpdated.toJSON() : cardUpdated;
   }
 
@@ -135,7 +140,7 @@ export class CardDatasource implements CardRepository {
    */
   public async saveCard(card: Card): Promise<Card> {
     logger.info('saveCard...');
-    let schemaCard = new CardModel(card);
+    const schemaCard = new CardModel(card);
     return await (await schemaCard.save()).toJSON();
   }
 
@@ -148,7 +153,6 @@ export class CardDatasource implements CardRepository {
    */
   public async publish(card: Card): Promise<Card> {
     logger.info('publish...');
-    card;
     return await CardModel.findOneAndUpdate(
       { _id: card.id },
       { published: true },
@@ -189,9 +193,7 @@ export class CardDatasource implements CardRepository {
    * Connect to mongo
    */
   private async connectToDatabase() {
-    const node_env = process.env.NODE_ENV;
     const MONGO_URI = `${MONGO_CONNECTION}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DB}-${nodeEnv}`;
-    console.log(MONGO_URI);
     const options = {
       useNewUrlParser: true,
       useFindAndModify: false,
@@ -210,5 +212,5 @@ export class CardDatasource implements CardRepository {
 }
 
 export function createCardDatasource(): CardDatasource {
-  return new CardDatasource();
+  return CardDatasource.getInstance();
 }
