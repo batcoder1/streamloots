@@ -34,13 +34,10 @@ Application
 - Install dependencies
   `npm install`
 
-- Run mongo and mongoclient
-  `docker-compose up`
-
 - Start server
   `npm start`
 
-## Task
+## Pedding Task
 
 ```
 When the owner retrieves the cards, she will have access to the following statistics: For each card, the total number of cards obtained and the total number of cards used by all the users.`
@@ -51,3 +48,14 @@ When another user retrieves the cards, she will have access to the following sta
 
 To perform this task, I would create a collection called `Transactions`, that would keep every operation performed with each card. In this collection We could keed the cardId, el owner of the card(userFrom), the user to receive the card(userTo) and the transaction price, after that we would have to update the balance of the user accounts.
 To resolve the task we can get the data from this collection.
+
+## Stress test
+
+Star server
+`npm run start:test`
+
+Open another console and executa the test
+
+`npm run stress`
+
+You can check the report in `./reports/stress_test_aaammdd.log`
