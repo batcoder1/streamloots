@@ -167,6 +167,7 @@ describe('Test cards controller', () => {
     const postDataApi = {
       id: cardTestId,
       name: 'TestUpdate',
+      limited: 10,
     };
 
     const endpoint = `${Path.cards}${Path.card}`;
@@ -175,7 +176,7 @@ describe('Test cards controller', () => {
     expect(resp.status).equals(HTTP_CODE_OK);
     expect(resp.data.name).equals(postDataApi.name);
     expect(resp.data.id).equals(cardTestId);
-    expect(resp.data.limited).equals(cardTest.limited);
+    expect(resp.data.limited).equals(postDataApi.limited);
     expect(resp.data.image).equals(cardTest.image);
   });
   it('PATCH card should respond 401, user not ownerToken of card ', async () => {

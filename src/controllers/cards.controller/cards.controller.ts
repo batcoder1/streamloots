@@ -58,12 +58,11 @@ class CardsController {
       if (!userId) {
         createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
       }
-      if (!isNil(id) && id) {
-        const cardSaved = await updateCard(req.body, userId);
-        res.send(cardSaved);
-      } else {
+      if (isNil(id)) {
         createErrorHandler(HTTP_CODE_BAD_REQUEST, BAD_REQUEST).throwIt();
       }
+      const cardSaved = await updateCard(req.body, userId);
+      res.send(cardSaved);
     } catch (error) {
       res.status(error.code).send({ error });
     }
