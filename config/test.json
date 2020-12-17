@@ -10,11 +10,11 @@
 "userToken":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdHJlYW1sb290cy5jb20iLCJ1c2VySWQiOiI1YTUwMTU5MzA4ZjVhODAwMTExZGU3NTAiLCJpYXQiOjE1MTYyMzkwMjJ9.ArXF6iD5tX0DkKiS0EG3y30Bl3g_E8iLPkk98hJw0Pc",
 
  "MONGO": {
-  "CONNECTION": "mongodb+srv",
-  "HOST": "cluster0.hrec8.mongodb.net",
+  "CONNECTION": "mongodb",
+  "HOST": "localhost:27017",
   "PORT": "27017",
   "USERNAME": "streamUser",
-  "PASSWORD": "xxxx",
+  "PASSWORD": "s1am#p6$14",
   "DB": "streamloots",
   "PARAMS": "retryWrites=true&w=majority"
 
