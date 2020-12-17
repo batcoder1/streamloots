@@ -5,35 +5,15 @@ import fs from 'fs';
 import childProcess from 'child_process';
 import commandExists from 'command-exists';
 const exec = util.promisify(childProcess.exec);
+import { cardsIdsLoaded } from './cards-ids-loaded';
 
 const BASE_URL = 'http://localhost:9091';
 const ownerToken = config.get('ownerToken');
-const cardIds: string[] = [
-  '5fd9f52c74463790065e3216',
-  '5fd9f52c74463790065e3217',
-  '5fd9f52c74463790065e3218',
-  '5fd9f52c74463790065e3219',
-  '5fd9f52c74463790065e321a',
-  '5fd9f52c74463790065e321b',
-  '5fd9f52c74463790065e321c',
-  '5fd9f52c74463790065e321d',
-  '5fd9f52c74463790065e321e',
-  '5fd9f52c74463790065e321f',
-  '5fd9f52c74463790065e3220',
-  '5fd9f52c74463790065e3221',
-  '5fd9f52c74463790065e3222',
-  '5fd9f52c74463790065e3223',
-  '5fd9f52c74463790065e3224',
-  '5fd9f52d74463790065e3225',
-  '5fd9f52d74463790065e3226',
-  '5fd9f52d74463790065e3227',
-  '5fd9f52d74463790065e3228',
-  '5fd9f52d74463790065e3229',
-];
+const cardIds: string[] = cardsIdsLoaded;
 
 async function getStress() {
   await commandExistInSO('ab');
-  const id = Math.floor(Math.random() * 19) + 1;
+  const id = Math.floor(Math.random() * 500) + 1;
 
   const { stdout, stderr } = await exec(
     `ab -n 10000 -c 1000 -H "authorization: token ${ownerToken}" ${BASE_URL}/cards/card?id=${cardIds[id]} `,

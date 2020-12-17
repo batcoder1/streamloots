@@ -129,6 +129,7 @@ class CardsController {
         createErrorHandler(HTTP_CODE_BAD_REQUEST, BAD_REQUEST).throwIt();
       }
 
+      logger.info(card.id);
       res.send(card);
     } catch (error) {
       res.status(error.code).send({ error });

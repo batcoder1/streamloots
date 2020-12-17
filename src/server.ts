@@ -13,7 +13,6 @@ export async function start() {
     logger.info(
       `Worker ${process.pid} started: API Server Listening on ${port}`,
     );
-    process.send('ready');
   } catch (error) {
     onError(error);
   }
