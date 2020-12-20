@@ -24,6 +24,7 @@ class CardsController {
   public static create = async (req: Request, res: Response) => {
     try {
       logger.info('create...');
+
       const userId = decodeToken(req);
       if (!userId) {
         createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
@@ -53,9 +54,10 @@ class CardsController {
   public static update = async (req: Request, res: Response) => {
     try {
       logger.info('update...');
+
       const { id } = req.body;
       const userId = decodeToken(req);
-      if (!userId) {
+      if (isNil(userId)) {
         createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
       }
       if (isNil(id)) {
@@ -75,10 +77,12 @@ class CardsController {
    */
   public static publish = async (req: Request, res: Response) => {
     try {
+      logger.info('publish...');
+
       const cardIds: string[] = req.body;
       const userId = decodeToken(req);
       console.log(userId);
-      if (!userId) {
+      if (isNil(userId)) {
         createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
       }
       await publishCard(cardIds, userId);
@@ -95,9 +99,11 @@ class CardsController {
    */
   public static unpublish = async (req: Request, res: Response) => {
     try {
+      logger.info('unpublish...');
+
       const cardIds: string[] = req.body;
       const userId = decodeToken(req);
-      if (!userId) {
+      if (isNil(userId)) {
         createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
       }
       await unpublishCard(cardIds, userId);
@@ -114,11 +120,11 @@ class CardsController {
    */
   public static getCard = async (req: Request, res: Response) => {
     try {
-      const { id } = req.query;
       logger.info('getCard...');
-      logger.info(`worker process: ', ${process.pid}`);
+      const { id } = req.query;
 
       let card: Card;
+      logger.info('id', { id });
       if (!isNil(id) && id) {
         card = await getCardById(id.toString());
         if (!card) {
@@ -142,21 +148,24 @@ class CardsController {
    */
   public static getUserCards = async (req: Request, res: Response) => {
     logger.info('getUserCards...');
-    const { userId } = req.query;
-    console.log('userId:', userId);
-    const userIdToken = decodeToken(req);
-    let cards: Card[];
-    if (!isNil(userId) && userId) {
+    try {
+      const { userId } = req.query;
+      const userIdToken = decodeToken(req);
+      let cards: Card[];
+
+      if (isNil(userId)) {
+        createErrorHandler(HTTP_CODE_BAD_REQUEST, BAD_REQUEST);
+      }
       if (userId === userIdToken) {
         cards = await getCardsByUser(userId.toString());
       } else {
         cards = await getPublishedCardsOfUser(userId.toString());
       }
-    } else {
-      createErrorHandler(HTTP_CODE_BAD_REQUEST, BAD_REQUEST);
-    }
 
-    res.send(cards);
+      res.send(cards);
+    } catch (error) {
+      res.status(error.code).send({ error });
+    }
   };
 
   /**
