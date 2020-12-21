@@ -4,6 +4,8 @@ import config from 'config';
 import {
   BASE_URL,
   HTTP_CODE_BAD_REQUEST,
+  HTTP_CODE_METHOD_IS_NOT_ALLOWED,
+  HTTP_CODE_METHOD_IS_NOT_IMPLEMENTED,
   HTTP_CODE_OK,
   HTTP_CODE_UNAUTHORIZED,
   NOT_CARD_OWNER,
@@ -152,7 +154,7 @@ describe('Test cards controller', () => {
     const endpoint = Path.cards;
     const method: Method = 'delete';
     const resp = await apiCall(postDataApi, endpoint, method);
-    expect(HTTP_CODE_BAD_REQUEST).equals(resp.status);
+    expect(resp.status).equals(HTTP_CODE_METHOD_IS_NOT_IMPLEMENTED);
   });
   it('options method in cards should respond 400 ', async () => {
     const postDataApi = {};
@@ -160,7 +162,8 @@ describe('Test cards controller', () => {
     const endpoint = Path.cards;
     const method: Method = 'options';
     const resp = await apiCall(postDataApi, endpoint, method);
-    expect(HTTP_CODE_BAD_REQUEST).equals(resp.status);
+    console.log(resp.data);
+    expect(resp.status).equals(HTTP_CODE_METHOD_IS_NOT_ALLOWED);
   });
 
   it('PATCH card should respond 200 and card updated ', async () => {

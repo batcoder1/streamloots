@@ -7,6 +7,8 @@ import {
   HTTP_CODE_UNAUTHORIZED,
   NOT_FOUND,
   NOT_AUTHORIZED,
+  HTTP_CODE_METHOD_IS_NOT_IMPLEMENTED,
+  METHOD_NOT_IMPLEMENTED,
 } from '../../../config/constant';
 import Card from '../../core/entities/Card';
 import getCardById from '../../core/interactors/card-interactor/getCardById';
@@ -169,16 +171,18 @@ class CardsController {
   };
 
   /**
-   * Bad request handler
+   * Mehod is not implemented
    *
    * @static
    * @param {Request} req
    * @param {Response} res
    * @memberof CardsController
    */
-  public static badRequest(req: Request, res: Response) {
-    logger.debug('badRequest...:');
-    res.status(400).send();
+  public static MethodNotImplemented(req: Request, res: Response) {
+    logger.info('Method not implemented...:');
+    res
+      .status(HTTP_CODE_METHOD_IS_NOT_IMPLEMENTED)
+      .send(METHOD_NOT_IMPLEMENTED);
   }
 }
 

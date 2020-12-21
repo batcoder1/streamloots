@@ -11,7 +11,7 @@ export class CardRouter {
     this.router = express.Router();
   }
 
-  Cards() {
+  paths() {
     this.router.get(Path.card, CardsController.getCard);
     this.router.put(Path.card, CardsController.create);
     this.router.patch(Path.card, CardsController.update);
@@ -19,8 +19,7 @@ export class CardRouter {
     this.router.post(Path.publish, CardsController.publish);
     this.router.post(Path.unpublish, CardsController.unpublish);
 
-    this.router.delete('', CardsController.badRequest);
-    this.router.options('', CardsController.badRequest);
+    this.router.delete('', CardsController.MethodNotImplemented);
 
     return this.router;
   }
