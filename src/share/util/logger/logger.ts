@@ -1,4 +1,5 @@
 import { LogsLogger } from './types';
+type DataType = string | Record<string, unknown>;
 
 export class Logger implements ILogger {
   protected readonly logsLogger: LogsLogger;
@@ -6,31 +7,29 @@ export class Logger implements ILogger {
   constructor({ logsLogger }: CreateLoggerParams) {
     this.logsLogger = logsLogger;
   }
-
-  public error(message: string, data?: object): void {
+  public error(message: string, data?: DataType): void {
     this.logsLogger.error(message, { data });
   }
 
-  public warn(message: string, data?: object): void {
+  public warn(message: string, data?: DataType): void {
     this.logsLogger.warn(message, { data });
   }
 
-  public info(message: string, data?: object): void {
+  public info(message: string, data?: DataType): void {
     this.logsLogger.info(message, { data });
   }
 
-  public debug(message: string, data?: object): void {
+  public debug(message: string, data?: DataType): void {
     this.logsLogger.debug(message, { data });
   }
 
-  public verbose(message: string, data?: object): void {
+  public verbose(message: string, data?: DataType): void {
     this.logsLogger.verbose(message, { data });
   }
-
 }
-export function createLogger(params: CreateLoggerParams): Logger {
+export const createLogger = (params: CreateLoggerParams): Logger => {
   return new Logger(params);
-}
+};
 
 export interface CreateLoggerParams {
   logsLogger: LogsLogger;

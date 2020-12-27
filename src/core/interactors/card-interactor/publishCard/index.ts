@@ -1,13 +1,13 @@
 import { createCardDatasource } from '../../../../dataSources/card.datasource';
-import { CreateDatadogNotifier } from '../../../../notifiers/datadog.notifier';
+import { createDatadogNotifier } from '../../../../notifiers/datadog.notifier';
 import publishCard from './publishCard.interactor';
-import { CreateEmailNotifier } from '../../../../notifiers/email.notifier';
-import { CreateGoogleNotifier } from '../../../../notifiers/google.notifier';
+import { createEmailNotifier } from '../../../../notifiers/email.notifier';
+import { createGoogleNotifier } from '../../../../notifiers/google.notifier';
 
 const cardRepository = createCardDatasource();
-const notifierRepository = CreateEmailNotifier();
-const dataDogRepository = CreateDatadogNotifier();
-const googleRepository = CreateGoogleNotifier();
+const notifierRepository = createEmailNotifier();
+const dataDogRepository = createDatadogNotifier();
+const googleRepository = createGoogleNotifier();
 
 export default publishCard(
   cardRepository,

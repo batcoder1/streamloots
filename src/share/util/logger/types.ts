@@ -7,4 +7,3 @@ export interface LogsLogger {
   debug: LogMethod;
   verbose: LogMethod;
 }
-

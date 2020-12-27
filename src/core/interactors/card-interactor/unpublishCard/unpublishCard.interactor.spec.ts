@@ -46,7 +46,7 @@ describe('Test unpublished', () => {
   it('published should not allow to publish a card of another user', async () => {
     const publishedExpected = false;
 
-    const res = await publishCard(cardsId2, cardTest1.userId);
+    await publishCard(cardsId2, cardTest1.userId);
     const card = await getCardById(cardsId2[0]);
     expect(card.published).equals(publishedExpected);
   });

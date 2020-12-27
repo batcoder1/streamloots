@@ -3,10 +3,9 @@ import { logger } from './share/util/logger';
 import { createMyExpress } from './config/express';
 let server: http.Server;
 const port = process.env.PORT || 9091;
-export async function start() {
+export const start = (): void => {
   try {
-    const myExpress = createMyExpress();
-    const app = myExpress.getApp();
+    const app = createMyExpress().getApp();
     app.set('port', port);
     server = http.createServer(app);
     server.listen(port);
@@ -16,17 +15,18 @@ export async function start() {
   } catch (error) {
     onError(error);
   }
-}
+};
+
 /**
- * On error
- * callback event for createServer error
- * @param {*} error
+ * On Error
+ *
+ * @param {NodeJS.ErrnoException} error
  */
-function onError(error: NodeJS.ErrnoException): void {
+const onError = (error: NodeJS.ErrnoException): void => {
   if (error.syscall !== 'listen') {
     throw error;
   }
-  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+  const bind = `Port ${port}`;
   switch (error.code) {
     case 'EACCES':
       logger.debug(`${bind} requires elevated privileges`);
@@ -39,8 +39,8 @@ function onError(error: NodeJS.ErrnoException): void {
     default:
       throw error;
   }
-}
+};
 
-export function stopServer() {
+export const stopServer = (): void => {
   server.close();
-}
+};

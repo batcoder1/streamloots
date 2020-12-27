@@ -2,11 +2,16 @@ import { LogsLogger } from '../types';
 import { createLogger, format, transports } from 'winston';
 const { combine, timestamp, printf, splat } = format;
 
-export function createConsoleLogger(level: string = 'info'): LogsLogger {
-  const myFormat = printf((info) => {
+export interface TransformableInfo {
+  level: string;
+  message: string;
+  [key: string]: any;
+}
+
+export const createConsoleLogger = (level: string): LogsLogger => {
+  const myFormat = printf((info: TransformableInfo): string => {
     return `${info.timestamp} [Streamloots] ${info.level}: ${JSON.stringify(
       info.message,
-      // tslint:disable-next-line:no-nested-template-literals
     )}${info.data ? `- ${JSON.stringify(info.data)}` : ''}`;
   });
 
@@ -18,4 +23,4 @@ export function createConsoleLogger(level: string = 'info'): LogsLogger {
       }),
     ],
   });
-}
+};

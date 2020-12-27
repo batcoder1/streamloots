@@ -5,7 +5,7 @@ export interface ICardDoc extends Document, Card {
   id: string;
 }
 
-const CardSchema: Schema = new Schema(
+const cardSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -33,16 +33,17 @@ const CardSchema: Schema = new Schema(
   { collection: 'Cards', timestamps: false },
 );
 
-CardSchema.set('toJSON', {
+cardSchema.set('toJSON', {
   virtuals: true,
-  transform: (doc: any, ret: any) => {
+  transform: (doc: any, ret: any): any => {
+    /* eslint no-underscore-dangle: ["error", { "allow": ["_id", "__v"] }]*/
     delete ret._id;
     delete ret.updatedAt;
     delete ret.createdAt;
     delete ret.__v;
 
-    return ret;
+    return ret as Record<string, unknown>;
   },
 });
-const CardModel = model<ICardDoc>('cards', CardSchema);
-export default CardModel;
+const cardModel = model<ICardDoc>('cards', cardSchema);
+export default cardModel;

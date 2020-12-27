@@ -5,7 +5,7 @@ import {
   METHOD_NOT_ALLOWED,
   Path,
 } from '../../config/constant';
-import { CreateCardRouter } from '../controllers/cards.controller/card.routes';
+import { createCardRouter } from '../controllers/cards.controller/card.routes';
 
 export class Routes {
   public router: express.Router;
@@ -26,9 +26,10 @@ export class Routes {
    * Set all app routes
    */
   private setAllRoutes() {
-    this.app.use(this.methodAllowed);
-    this.app.use(Path.cards, CreateCardRouter().paths());
-    this.app.route('/*').get(this.index);
+    const app = this.app;
+    app.use(this.methodAllowed);
+    app.use(Path.cards, createCardRouter().paths());
+    app.route('/*').get(this.index);
   }
 
   /**
@@ -63,6 +64,6 @@ export class Routes {
   }
 }
 
-export function createRoutes(app: express.Express) {
+export const createRoutes = (app: express.Express): Routes => {
   return new Routes(app);
-}
+};

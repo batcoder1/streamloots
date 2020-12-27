@@ -4,7 +4,7 @@
   "description": "cards",
   "main": "dist/index.js",
   "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "prebuild": "eslint -c .eslintrc.js --ext .ts ./src",
     "copy-config": "cp -R ./config/ ./dist/",
     "build": "tsc -p tsconfig.build.json && npm run copy-config",
     "delete-dist": "rm -rf dist",
@@ -19,7 +19,8 @@
     "start:stress": "NODE_ENV=test ts-node ./stress/stress.ts",
     "start": "pm2 start && pm2 save",
     "postinstall": "$(yarn bin)/pm2 install typescript",
-    "stress": "npm run start:stress"
+    "stress": "npm run start:stress",
+    "lint": "eslint -c .eslintrc.js --ext .ts ./src --fix"
   },
   "author": "Enrique Rubio",
   "license": "ISC",
@@ -55,16 +56,22 @@
     "@types/node": "^13.13.35",
     "@types/nodemailer": "^6.4.0",
     "@types/sinon": "^7.0.13",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
     "axios": "^0.21.0",
     "chai": "^4.2.0",
     "command-exists": "^1.2.9",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-jsdoc": "^30.7.9",
+    "eslint-plugin-prefer-arrow": "^1.2.2",
+    "eslint-plugin-prettier": "^3.3.0",
     "lodash": "^4.17.20",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.2",
     "prettier": "2.0.4",
     "ts-mocha": "^6.0.0",
     "ts-node": "^8.10.2",
-    "tslint": "^6.1.1",
     "typescript": "^3.8.3",
     "typescript-tslint-plugin": "^0.5.5"
   }

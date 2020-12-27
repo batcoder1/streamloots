@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import getCards from '.';
-import getCardById from '.';
 import { raretyCardEnum } from '../../../../../config/constant';
 import CardModel from '../../../../dataSources/schema/card.schema';
 

@@ -16,7 +16,7 @@
   "USERNAME": "streamUser",
   "PASSWORD": "s1am#p6$14",
   "DB": "streamloots",
-  "PARAMS": "retryWrites=true&w=majority"
+  "PARAMS": ""
 
  }
 }

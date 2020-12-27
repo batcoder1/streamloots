@@ -3,7 +3,6 @@ import Card from '../../../entities/Card';
 import { createErrorHandler } from '../../../../share/error-handler/error.handler';
 import {
   HTTP_CODE_UNAUTHORIZED,
-  NOT_AUTHORIZED,
   NOT_CARD_OWNER,
 } from '../../../../../config/constant';
 

@@ -8,12 +8,12 @@ import { createErrorHandler } from '../share/error-handler/error.handler';
 import { logger } from '../share/util/logger';
 import CardModel from './schema/card.schema';
 
-let MONGO_CONNECTION: any;
-let MONGO_USERNAME: any;
-let MONGO_HOST: any;
-let MONGO_PASSWORD: any;
-let MONGO_DB: any;
-let MONGO_PARAMS: any;
+let MONGO_CONNECTION: string;
+let MONGO_USERNAME: string;
+let MONGO_HOST: string;
+let MONGO_PASSWORD: string;
+let MONGO_DB: string;
+let MONGO_PARAMS: string;
 const nodeEnv = process.env.NODE_ENV;
 
 export class CardDatasource implements CardRepository {
@@ -22,7 +22,7 @@ export class CardDatasource implements CardRepository {
     if (!CardDatasource.instance) {
       CardDatasource.instance = new CardDatasource();
       this.instance.setEnv();
-      this.instance.connectToDatabase();
+      void this.instance.connectToDatabase();
     }
     return CardDatasource.instance;
   }
@@ -82,7 +82,7 @@ export class CardDatasource implements CardRepository {
    */
   public async getCardById(id: string): Promise<Card> {
     logger.info('getCardById...');
-    const card = await await CardModel.findById(id);
+    const card = await CardModel.findById(id);
     if (!card) {
       createErrorHandler(HTTP_CODE_NOT_FOUND, NOT_FOUND).throwIt();
     }
@@ -122,12 +122,9 @@ export class CardDatasource implements CardRepository {
   public async updateCard(card: Card): Promise<Card> {
     logger.info('updateCard...');
 
-    const updated = await CardModel.findOneAndUpdate(
-      { _id: card.id },
-      { $set: card },
-    );
+    await CardModel.findOneAndUpdate({ _id: card.id }, { $set: card });
 
-    const cardUpdated = await await CardModel.findById(card.id);
+    const cardUpdated = await CardModel.findById(card.id);
     return !isNil(cardUpdated) ? cardUpdated.toJSON() : cardUpdated;
   }
 
@@ -141,7 +138,7 @@ export class CardDatasource implements CardRepository {
   public async saveCard(card: Card): Promise<Card> {
     logger.info('saveCard...');
     const schemaCard = new CardModel(card);
-    return await (await schemaCard.save()).toJSON();
+    return (await schemaCard.save()).toJSON();
   }
 
   /**
@@ -193,7 +190,7 @@ export class CardDatasource implements CardRepository {
    * Connect to mongo
    */
   private async connectToDatabase() {
-    const MONGO_URI = `${MONGO_CONNECTION}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DB}-${nodeEnv}`;
+    const MONGO_URI = `${MONGO_CONNECTION}://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DB}-${nodeEnv}${MONGO_PARAMS}`;
     const options = {
       useNewUrlParser: true,
       useFindAndModify: false,
@@ -205,12 +202,12 @@ export class CardDatasource implements CardRepository {
       await mongoose.connect(MONGO_URI, options);
       logger.info('Mongo: connected succesfully!!!');
     } catch (error) {
-      logger.error('Mongo: Could not connect to the database. Error: ' + error);
+      logger.error(`Mongo: Could not connect to the database. Error: ${error}`);
       process.exit(1);
     }
   }
 }
 
-export function createCardDatasource(): CardDatasource {
+export const createCardDatasource = (): CardDatasource => {
   return CardDatasource.getInstance();
-}
+};

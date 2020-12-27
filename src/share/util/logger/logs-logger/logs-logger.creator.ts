@@ -2,13 +2,13 @@ import { LogsLogger } from '../types';
 import { createConsoleLogger } from './console.logger';
 import { createProductionLogger } from './production.logger';
 
-export function createLogsLogger({
+export const createLogsLogger = ({
   type = 'console',
   level = 'info',
 }: {
   type: string;
   level: string;
-}): LogsLogger {
+}): LogsLogger => {
   switch (type) {
     case 'console': {
       return createConsoleLogger(level);
@@ -20,4 +20,4 @@ export function createLogsLogger({
       throw Error(`Unknown Type: ${type}`);
     }
   }
-}
+};

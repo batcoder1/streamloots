@@ -42,13 +42,12 @@ const cardTest3 = {
   userId: '7bc74c5937b6b08419c24141',
 };
 const baseUrl = BASE_URL;
-let cardCreateId;
 
 let cardTestId: string;
 let cardTestId2: string;
 describe('Test cards controller', () => {
   before(async () => {
-    await server.start();
+    server.start();
     await CardModel.deleteMany({});
     const schemaCard = new CardModel(cardTest);
     const card = await schemaCard.save();
@@ -57,9 +56,9 @@ describe('Test cards controller', () => {
     const card2 = await schemaCard2.save();
     cardTestId2 = card2.id;
     const schemaCard3 = new CardModel(cardTest3);
-    const card3 = await schemaCard3.save();
+    await schemaCard3.save();
   });
-  after(async () => {
+  after(() => {
     server.stopServer();
   });
 
@@ -75,7 +74,6 @@ describe('Test cards controller', () => {
     const endpoint = `${Path.cards}${Path.card}`;
     const method: Method = 'put';
     const resp = await apiCall(postDataApi, endpoint, method, ownerToken);
-    cardCreateId = resp.data.id;
     expect(resp.status).equals(HTTP_CODE_OK);
     expect(resp.data.name).equals(postDataApi.name);
   });
@@ -92,7 +90,7 @@ describe('Test cards controller', () => {
     const endpoint = `${Path.cards}${Path.card}`;
     const method: Method = 'put';
     const resp = await apiCall(postDataApi, endpoint, method);
-    cardCreateId = resp.data.id;
+
     expect(resp.status).equals(HTTP_CODE_UNAUTHORIZED);
   });
 
@@ -193,7 +191,7 @@ describe('Test cards controller', () => {
     const resp = await apiCall(postDataApi, endpoint, method, ownerToken);
 
     expect(resp.status).equals(HTTP_CODE_UNAUTHORIZED);
-    expect(resp.data.error.description).equals(NOT_CARD_OWNER);
+    expect(resp.data.error.message).equals(NOT_CARD_OWNER);
   });
   it('Published cards should respond 200', async () => {
     const postDataApi = [cardTestId];
@@ -215,18 +213,19 @@ describe('Test cards controller', () => {
   });
 });
 
-async function apiCall(
+const apiCall = async (
   dataRequest: any,
   endpoint: string,
   method: Method,
   user?: string,
-): Promise<AxiosResponse> {
+): Promise<AxiosResponse> => {
   try {
     const configRequest: AxiosRequestConfig = {
       url: endpoint,
       method,
       baseURL: baseUrl,
       headers: {
+        /* eslint-disable @typescript-eslint/naming-convention */
         'Content-Type': 'application/json; charset=utf-8',
         authorization: `token ${user}`,
       },
@@ -236,6 +235,7 @@ async function apiCall(
 
     return response;
   } catch (error) {
+    /* eslint-disable @typescript-eslint/no-unsafe-return */
     return error.response;
   }
-}
+};

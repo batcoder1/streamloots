@@ -1,17 +1,21 @@
 import { logger } from '../util/logger';
 
-export class ErrorHandler {
-  protected message: any;
-  protected code: number;
+export class ErrorHandler extends Error {
+  code: number;
+  message: string;
+  stack?: string;
 
-  constructor(code: any, message: any) {
+  constructor(code: number, message: string, stack?: string) {
+    super();
     this.code = code;
     this.message = message;
+    this.stack = stack;
   }
-  public throwIt() {
+  public throwIt(): ErrorHandler {
     const status = {
       code: this.code,
-      description: this.message,
+      message: this.message,
+      stack: this.stack,
     };
 
     logger.debug('Error', status);
@@ -19,7 +23,10 @@ export class ErrorHandler {
   }
 }
 
-export function createErrorHandler(code: number, message: any) {
-  logger.debug('createErrorHandler', { code, message });
-  return new ErrorHandler(code, message);
-}
+export const createErrorHandler = (
+  code: number,
+  message: string,
+  stack?: string,
+): ErrorHandler => {
+  return new ErrorHandler(code, message, stack);
+};

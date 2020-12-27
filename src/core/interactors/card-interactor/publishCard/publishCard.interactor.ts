@@ -9,7 +9,7 @@ const publishCard = (
   dataDogRepository: AnalyticRepository,
   googleRepository: AnalyticRepository,
   notifierRepository: NotifierRepository,
-) => async (cardIds: string[], userId: string) => {
+) => async (cardIds: string[], userId: string): Promise<void> => {
   let card: Card;
 
   for (const cardId of cardIds) {
@@ -19,7 +19,7 @@ const publishCard = (
       dataDogRepository.send(card, PUBLISHED_STAT);
       googleRepository.send(card, PUBLISHED_STAT);
       // we could send a notification when a card is publish or unpublish
-      //  notifierRepository.notify(card, 'user@email');
+      notifierRepository.notify(card, 'user@email');
     }
   }
 };

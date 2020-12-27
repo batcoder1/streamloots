@@ -23,7 +23,7 @@ import { createErrorHandler } from '../../share/error-handler/error.handler';
 import { logger } from '../../share/util/logger';
 
 class CardsController {
-  public static create = async (req: Request, res: Response) => {
+  public static create = async (req: Request, res: Response): Promise<void> => {
     try {
       logger.info('create...');
 
@@ -53,7 +53,7 @@ class CardsController {
    * @static
    * @memberof CardsController
    */
-  public static update = async (req: Request, res: Response) => {
+  public static update = async (req: Request, res: Response): Promise<void> => {
     try {
       logger.info('update...');
 
@@ -77,7 +77,10 @@ class CardsController {
    * @static
    * @memberof CardsController
    */
-  public static publish = async (req: Request, res: Response) => {
+  public static publish = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       logger.info('publish...');
 
@@ -99,7 +102,10 @@ class CardsController {
    * @static
    * @memberof CardsController
    */
-  public static unpublish = async (req: Request, res: Response) => {
+  public static unpublish = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       logger.info('unpublish...');
 
@@ -120,7 +126,10 @@ class CardsController {
    * @static
    * @memberof CardsController
    */
-  public static getCard = async (req: Request, res: Response) => {
+  public static getCard = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       logger.info('getCard...');
       const { id } = req.query;
@@ -148,7 +157,10 @@ class CardsController {
    * @static
    * @memberof CardsController
    */
-  public static getUserCards = async (req: Request, res: Response) => {
+  public static getUserCards = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     logger.info('getUserCards...');
     try {
       const { userId } = req.query;
@@ -178,12 +190,12 @@ class CardsController {
    * @param {Response} res
    * @memberof CardsController
    */
-  public static MethodNotImplemented(req: Request, res: Response) {
+  public static methodNotImplemented = (req: Request, res: Response): void => {
     logger.info('Method not implemented...:');
     res
       .status(HTTP_CODE_METHOD_IS_NOT_IMPLEMENTED)
       .send(METHOD_NOT_IMPLEMENTED);
-  }
+  };
 }
 
 export default CardsController;

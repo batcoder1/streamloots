@@ -4,7 +4,7 @@ import { createLogger, format } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, json } = format;
 
-export function createProductionLogger(level: string = 'warn'): LogsLogger {
+export const createProductionLogger = (level: string): LogsLogger => {
   const options = {
     filename: 'logs/streamloots-%DATE%.log',
     datePattern: 'YYYYMMDD',
@@ -19,4 +19,4 @@ export function createProductionLogger(level: string = 'warn'): LogsLogger {
     format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), json()),
     transports: [new DailyRotateFile(options)],
   });
-}
+};

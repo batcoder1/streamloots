@@ -1,7 +1,6 @@
 import * as express from 'express';
 import { Path } from '../../../config/constant';
 
-import { logger } from '../../share/util/logger';
 import CardsController from './cards.controller';
 
 export class CardRouter {
@@ -11,7 +10,7 @@ export class CardRouter {
     this.router = express.Router();
   }
 
-  paths() {
+  paths(): express.Router {
     this.router.get(Path.card, CardsController.getCard);
     this.router.put(Path.card, CardsController.create);
     this.router.patch(Path.card, CardsController.update);
@@ -19,12 +18,12 @@ export class CardRouter {
     this.router.post(Path.publish, CardsController.publish);
     this.router.post(Path.unpublish, CardsController.unpublish);
 
-    this.router.delete('', CardsController.MethodNotImplemented);
+    this.router.delete('', CardsController.methodNotImplemented);
 
     return this.router;
   }
 }
 
-export function CreateCardRouter(): CardRouter {
+export const createCardRouter = (): CardRouter => {
   return new CardRouter();
-}
+};

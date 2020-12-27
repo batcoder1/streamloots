@@ -8,4 +8,3 @@ const logsLogger = createLogsLogger({
 });
 
 export const logger = createLogger({ logsLogger });
-

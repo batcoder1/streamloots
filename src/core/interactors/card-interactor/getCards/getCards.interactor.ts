@@ -1,6 +1,5 @@
-import NotifierRepository from '../../../repositories/analytic.repository';
-import CardRepository from '../../../repositories/card.repository';
 import Card from '../../../entities/Card';
+import CardRepository from '../../../repositories/card.repository';
 
 const getCards = (cardRepository: CardRepository) => async (): Promise<
   Card[]

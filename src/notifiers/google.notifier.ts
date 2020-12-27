@@ -26,9 +26,9 @@ export class GoogleNotifier implements AnalyticRepository {
       ev: card.name,
     };
 
-    axios.post('http://www.google-analytics.com/collect', data);
+    void axios.post('http://www.google-analytics.com/collect', data);
   }
 }
-export function CreateGoogleNotifier(): GoogleNotifier {
+export const createGoogleNotifier = (): GoogleNotifier => {
   return new GoogleNotifier();
-}
+};

@@ -12,7 +12,7 @@ export class EmailNotifier implements NotifierRepository {
       subject: `Your card ${card.name} ${publish}`,
       text: 'Your card has been updated!!',
     };
-    mailer.sendMail(mailOptions);
+    void mailer.sendMail(mailOptions);
   }
 
   private getMailer() {
@@ -28,6 +28,6 @@ export class EmailNotifier implements NotifierRepository {
   }
 }
 
-export function CreateEmailNotifier(): EmailNotifier {
+export const createEmailNotifier = (): EmailNotifier => {
   return new EmailNotifier();
-}
+};

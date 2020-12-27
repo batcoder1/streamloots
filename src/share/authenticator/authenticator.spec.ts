@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { request } from 'express';
 import config from 'config';
-import { BASE_URL, raretyCardEnum } from '../../../config/constant';
+import { raretyCardEnum } from '../../../config/constant';
 import CardModel from '../../dataSources/schema/card.schema';
 import * as server from '../../server';
 import { decodeToken } from './authenticator';
@@ -14,29 +14,26 @@ const cardTest = {
   published: false,
   userId: '7bc74c5937b6b08419c24141',
 };
-const baseUrl = BASE_URL;
 const owner = config.get('ownerToken');
-let cardTestId: string;
 describe('Test auh', () => {
   before(async () => {
-    await server.start();
+    server.start();
     await CardModel.deleteMany({});
     const schemaCard = new CardModel(cardTest);
-    const card = await schemaCard.save();
-    cardTestId = card.id;
+    await schemaCard.save();
   });
-  after(async () => {
+  after(() => {
     server.stopServer();
   });
 
-  it('getUserIdFromToken should return error if the user is not authorized ', async () => {
+  it('getUserIdFromToken should return error if the user is not authorized ', () => {
     const req = request;
     const userIdExpected = '5a50159308f5a800111de759';
     req.headers = {
       authorization: `token ${owner}`,
     };
 
-    const userId = decodeToken(req);
+    const userId: string = decodeToken(req);
     expect(userId).eq(userIdExpected);
   });
 });

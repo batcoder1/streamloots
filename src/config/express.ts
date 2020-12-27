@@ -18,13 +18,13 @@ export class MyExpress {
     this.routes = createRoutes(this.app);
   }
 
-  getApp() {
+  getApp(): express.Express {
     return this.app;
   }
   /**
    * Set middleware
    */
-  private setMiddlewares() {
+  private setMiddlewares(): void {
     this.app.use(bodyParser.json({ limit: '200mb' }));
     this.app.use(bodyParser.urlencoded({ limit: '200mb', extended: true }));
     this.app.use(helmet());
@@ -32,6 +32,6 @@ export class MyExpress {
     this.app.use(cookieParser());
   }
 }
-export function createMyExpress() {
+export const createMyExpress = (): MyExpress => {
   return new MyExpress();
-}
+};
