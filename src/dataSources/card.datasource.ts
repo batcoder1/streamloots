@@ -1,10 +1,10 @@
 import config from 'config';
-import { isNil } from 'lodash';
 import mongoose from 'mongoose';
 import { HTTP_CODE_NOT_FOUND, NOT_FOUND } from '../../config/constant';
 import Card from '../core/entities/Card';
 import CardRepository from '../core/repositories/card.repository';
 import { createErrorHandler } from '../share/error-handler/error.handler';
+import isNil from '../share/util/isNil';
 import { logger } from '../share/util/logger';
 import CardModel from './schema/card.schema';
 

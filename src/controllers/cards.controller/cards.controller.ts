@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { isNil } from 'lodash';
 import {
   BAD_REQUEST,
   HTTP_CODE_BAD_REQUEST,
@@ -20,6 +19,7 @@ import unpublishCard from '../../core/interactors/card-interactor/unpublishCard'
 import updateCard from '../../core/interactors/card-interactor/updateCard';
 import { decodeToken } from '../../share/authenticator/authenticator';
 import { createErrorHandler } from '../../share/error-handler/error.handler';
+import isNil from '../../share/util/isNil';
 import { logger } from '../../share/util/logger';
 
 class CardsController {
