@@ -48,6 +48,7 @@ let cardTestId2: string;
 describe('Test cards controller', () => {
   before(async () => {
     server.start();
+
     await CardModel.deleteMany({});
     const schemaCard = new CardModel(cardTest);
     const card = await schemaCard.save();
@@ -160,7 +161,6 @@ describe('Test cards controller', () => {
     const endpoint = Path.cards;
     const method: Method = 'options';
     const resp = await apiCall(postDataApi, endpoint, method);
-    console.log(resp.data);
     expect(resp.status).equals(HTTP_CODE_METHOD_IS_NOT_ALLOWED);
   });
 

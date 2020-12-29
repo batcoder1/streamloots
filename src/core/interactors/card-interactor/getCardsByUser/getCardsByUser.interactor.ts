@@ -4,7 +4,7 @@ import Card from '../../../entities/Card';
 const getCardsByUser = (cardRepository: CardRepository) => async (
   user: string,
 ): Promise<Card[]> => {
-  return await cardRepository.getCardByUser(user);
+  return await cardRepository.getByUser(user);
 };
 
 export default getCardsByUser;

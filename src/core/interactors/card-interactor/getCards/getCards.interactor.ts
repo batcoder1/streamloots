@@ -4,7 +4,7 @@ import CardRepository from '../../../repositories/card.repository';
 const getCards = (cardRepository: CardRepository) => async (): Promise<
   Card[]
 > => {
-  return await cardRepository.getCards();
+  return await cardRepository.getAll();
 };
 
 export default getCards;

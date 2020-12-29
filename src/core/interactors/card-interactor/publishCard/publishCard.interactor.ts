@@ -13,7 +13,7 @@ const publishCard = (
   let card: Card;
 
   for (const cardId of cardIds) {
-    card = await cardRepository.getCardById(cardId);
+    card = await cardRepository.getById(cardId);
     if (card.userId === userId) {
       await cardRepository.publish(card);
       dataDogRepository.send(card, PUBLISHED_STAT);

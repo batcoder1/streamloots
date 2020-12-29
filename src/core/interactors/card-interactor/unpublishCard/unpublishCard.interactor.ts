@@ -7,7 +7,7 @@ const unpublishCard = (
   notifierRepository: NotifierRepository,
 ) => async (cardIds: string[], userId: string): Promise<void> => {
   for (const cardId of cardIds) {
-    let card: Card = await cardRepository.getCardById(cardId);
+    let card: Card = await cardRepository.getById(cardId);
     if (card.userId === userId) {
       card = await cardRepository.unpublish(card);
       // we could send a notification when a card is publish or unpublish
