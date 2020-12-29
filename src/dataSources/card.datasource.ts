@@ -1,5 +1,5 @@
 import config from 'config';
-import mongoose, { Model } from 'mongoose';
+import mongoose from 'mongoose';
 import Card from '../core/entities/Card';
 import { logger } from '../share/util/logger';
 import { MainDatasource } from './main.datasource';
