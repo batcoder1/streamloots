@@ -11,7 +11,7 @@ const BASE_URL = 'http://localhost:9091';
 const ownerToken = config.get('ownerToken');
 const cardIds: string[] = cardsIdsLoaded;
 
-async function getStress() {
+const getStress = async () => {
   await commandExistInSO('ab');
   const id = Math.floor(Math.random() * 500) + 1;
 
@@ -20,22 +20,22 @@ async function getStress() {
   );
   writeReport(stdout + stderr);
   console.log(stdout);
-}
+};
 
-async function main() {
+const main = async () => {
   await getStress();
-}
+};
 
-async function commandExistInSO(command: string) {
+const commandExistInSO = async (command: string) => {
   try {
     await commandExists(command);
   } catch (error) {
     printError(command);
     exit(0);
   }
-}
+};
 
-function writeReport(report: any) {
+const writeReport = (report: any) => {
   const date: string = getDateFormatted();
   const logFile = fs.createWriteStream(
     __dirname + `/reports/stress_test_${date}.log`,
@@ -49,9 +49,9 @@ function writeReport(report: any) {
     logFile.write(util.format(d) + '\n');
     logStdout.write(util.format(d) + '\n');
   };
-}
+};
 
-function getDateFormatted(): string {
+const getDateFormatted = (): string => {
   const d = new Date();
   const date = new Intl.DateTimeFormat('es', {
     year: 'numeric',
@@ -62,9 +62,9 @@ function getDateFormatted(): string {
   const dateArr = date.split('/');
   console.log();
   return `${dateArr[2]}${dateArr[1]}${dateArr[0]}`;
-}
+};
 
-function printError(command: string) {
+const printError = (command: string) => {
   console.error(
     '********************************** WARNING ****************************************',
   );
@@ -74,5 +74,5 @@ function printError(command: string) {
   console.error(
     '***********************************************************************************',
   );
-}
-main();
+};
+void main();

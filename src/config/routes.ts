@@ -54,7 +54,6 @@ export class Routes {
     res: express.Response,
     next: express.NextFunction,
   ) {
-    console.log('methodAllowed', req.method);
     if (!allowedMethods.includes(req.method)) {
       return res
         .status(HTTP_CODE_METHOD_IS_NOT_ALLOWED)

@@ -8,7 +8,7 @@ const cardIds: string[] = [];
 const BASE_URL = 'http://localhost:9091';
 const ownerToken = config.get('ownerToken');
 
-async function load() {
+const load = async () => {
   console.log('load.......');
   for (const card of CARDS) {
     const postDataApi = card;
@@ -24,8 +24,8 @@ async function load() {
     }
   }
   writeCardsIdsInFile(cardIds);
-}
-function writeCardsIdsInFile(ids: string[]) {
+};
+const writeCardsIdsInFile = (ids: string[]) => {
   const file = fs.createWriteStream(__dirname + `/cards-ids-loaded.ts`, {
     flags: 'w',
   });
@@ -33,18 +33,19 @@ function writeCardsIdsInFile(ids: string[]) {
   file.write(`export const cardsIdsLoaded =[`);
   ids.forEach((id) => file.write(`"${id}",`));
   file.write(`];`);
-}
-async function apiCall(
+};
+const apiCall = async (
   dataRequest: any,
   endpoint: string,
   method: Method,
-): Promise<AxiosResponse> {
+): Promise<AxiosResponse> => {
   try {
     const configRequest: AxiosRequestConfig = {
       url: endpoint,
       method,
       baseURL: BASE_URL,
       headers: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'Content-Type': 'application/json; charset=utf-8',
         authorization: `token ${ownerToken}`,
       },
@@ -54,8 +55,9 @@ async function apiCall(
 
     return response;
   } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return error.response;
   }
-}
+};
 
-load();
+void load();

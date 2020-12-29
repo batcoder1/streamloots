@@ -86,7 +86,6 @@ class CardsController {
 
       const cardIds: string[] = req.body;
       const userId = decodeToken(req);
-      console.log(userId);
       if (isNil(userId)) {
         createErrorHandler(HTTP_CODE_UNAUTHORIZED, NOT_AUTHORIZED).throwIt();
       }
