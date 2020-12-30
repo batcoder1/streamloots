@@ -7,8 +7,6 @@
       "level": "LOGGER_LEVEL"
     } 
   },
-  "ownerToken": "OWNER_TOKEN",
-  "userToken": "USER_TOKEN",
   
   "MONGO": {
     "CONNECTION": "MONGO_CONNECTION",

@@ -22,5 +22,15 @@ db.createUser({
                            
 });
  
+use streamloots-production
+db.createUser({
+ user: user, 
+ pwd: passwd, 
+ roles: [ 
+    { role: "readWrite", db: "streamloots-production" },
+    ]
+                           
+});
+ 
 EOF
 

@@ -10,7 +10,7 @@ export const start = (): void => {
     server = http.createServer(app);
     server.listen(port);
     logger.info(
-      `Worker ${process.pid} started: API Server Listening on ${port}`,
+      `Worker ${process.pid} started: API Server Listening on ${port} env: ${process.env.NODE_ENV}`,
     );
   } catch (error) {
     onError(error);
