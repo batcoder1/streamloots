@@ -11,7 +11,6 @@
     "build-ts": "npm run delete-dist && npm run build",
     "serve": "npm run build-ts & npm run start",
     "prestart": "npm run build-ts",
-    "start:node": "npm run build-ts && NODE_ENV=production node dist/src/main.js",
     "start:dev": "NODE_ENV=dev nodemon",
     "start:test": "NODE_ENV=test nodemon",
     "test": "NODE_ENV=test ts-mocha -p tsconfig.json --opts ./mocha.opts --timeout 10000 --exit",
