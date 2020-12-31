@@ -3,4 +3,5 @@ export default interface User {
   name: string;
   surname: string;
   balance: number;
+  birthDate: Date;
 }

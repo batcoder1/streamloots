@@ -19,6 +19,9 @@ const userSchema: Schema = new Schema(
       type: Number,
       default: 0,
     },
+    birthDate: {
+      type: Date,
+    },
   },
   { collection: 'Users', timestamps: false },
 );
