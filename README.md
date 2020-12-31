@@ -31,39 +31,24 @@ Application
 - Clone the repo
   `git clone https://github.com/wooltar/streamloots`
 
-- Install dependencies
-  `npm install`
-
-- Get up mongoDB
+- Get up
   `docker-compose up`
-
-- Start server (cluster)
-  `npm start`
-  or
-- Start server (one worker)
-  `npm start:dev`
-
-- Stop server (cluster)
-  `pm2 stop streamloots`
 
 ## Test
 
 - Get up mongoDB
-  `docker-compose up`
+  `docker-compose start mongodb`
 
 - Run tests
   `npm run test`
 
 ## Stress test
 
-- Get up mongoDB
+- Get up
   `docker-compose up`
 
 - Load cards
   `npm run load:cards`
-
-- Star server
-  `npm run pm2`
 
 Open another console and execute
 
