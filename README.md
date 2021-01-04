@@ -28,27 +28,33 @@ Application
 
 ## Getting started locally
 
-- Clone the repo
-  `git clone https://github.com/wooltar/streamloots`
+Clone the repo
 
-- Get up
-  `docker-compose up`
+`git clone https://github.com/wooltar/streamloots`
+
+Get up
+
+`docker-compose up`
 
 ## Test
 
-- Get up mongoDB
-  `docker-compose start mongodb`
+Get up mongoDB
 
-- Run tests
-  `npm run test`
+`docker-compose start mongodb`
+
+Run tests
+
+`npm run test`
 
 ## Stress test
 
-- Get up
-  `docker-compose up`
+Get up
 
-- Load cards
-  `npm run load:cards`
+`docker-compose up`
+
+Load cards
+
+`npm run load:cards`
 
 Open another console and execute
 
